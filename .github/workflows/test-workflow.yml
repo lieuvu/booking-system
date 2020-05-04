@@ -1,11 +1,12 @@
 # This work flow happens when pushing to branches except
 # master and release branch
-name: Test Workflow
+name: Test workflow
 
 on:
   push:
     branches:
       - '*'
+      - '*/*'
       - '!master'
       - '!release'
 
