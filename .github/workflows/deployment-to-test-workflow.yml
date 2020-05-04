@@ -1,0 +1,45 @@
+# This work flow happens when pushing to branches except
+# master and release branch
+name: Deployment to test workflow
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 12.16.3
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.16.3"
+
+      - name: Install pacakges
+        run: npm install
+
+      - name: Test
+        run: npm run test
+
+      - name: Clean build
+        run: |
+          npm run clean
+          npm run build
+
+      - name: Deployment
+        if: ${{ success() }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run:
+          echo "Run terraform here"
+
+      # - name: Terraform apply
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #   run: terraform apply --auto-approve terraform

@@ -1,0 +1,8 @@
+# VSCode
+.history
+
+# Development
+node_modules
+
+# Build
+dist
