@@ -4,6 +4,8 @@
  * 'globalSetup'
  */
 
+ // Library
+require('module-alias/register')
 const globalTest = require('./global-test');
 
 module.exports = async () => {

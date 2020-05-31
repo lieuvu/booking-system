@@ -3,8 +3,8 @@ import { raw } from 'slonik-sql-tag-raw';
 
 // Typescript
 import { slonik, sql, DatabaseConnectionType } from './global_test/global-test';
-import { Machine } from '@src/model/machine';
-import { log } from '@src/util/logger';
+import { Machine } from '@src/models/machine';
+import { log } from '@util/logger';
 
 
 const addData = async () => await slonik.connect(async (connection) => {

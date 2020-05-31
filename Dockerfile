@@ -1,4 +1,4 @@
-FROM node:12.16.3-alpine3.11
+FROM node:12.18.0-alpine3.12
 
 # Update image
 RUN apk update
@@ -13,7 +13,6 @@ WORKDIR /app
 
 # Copy source files
 COPY package.json /app/
-COPY tsconfig.json /app/
 
 # Run npm commands
 RUN npm install

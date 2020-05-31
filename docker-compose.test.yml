@@ -1,0 +1,12 @@
+version: "3.3"
+
+services:
+  booking-system:
+    image: booking-system:test
+    command: ./scripts/wait-for-it.sh booking-system.db:5432 -- npm run test
+    volumes:
+      - ./jest.config.js:/app/jest.config.js:rw
+      - ./test:/app/test
+    environment:
+      - LOG_LEVEL=error
+      - NODE_ENV=test

@@ -8,21 +8,19 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - booking-system.db
-    command: ./scripts/wait-for-it.sh booking-system.db:5432 -- npm run test
     volumes:
       - ./package.json:/app/package.json:rw
       - ./tsconfig.json:/app/tsconfig.json:rw
-      - ./jest.config.js:/app/jest.config.js:rw
       - ./scripts:/app/scripts
       - ./src:/app/src:rw
-      - ./test:/app/test
     environment:
       - POSTGRES_HOST=booking-system.db
       - POSTGRES_USER=booking
       - POSTGRES_PASSWORD=booking
       - POSTGRES_DB=booking_system
-      - LOG_LEVEL=debug
+      - LOG_LEVEL=info
       - LOG_COLORS=true
+      - NODE_ENV=local
 
   booking-system.db:
     image: postgres:12-alpine

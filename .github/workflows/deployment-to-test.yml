@@ -1,6 +1,6 @@
 # This work flow happens when pushing to branches except
 # master and release branch
-name: Deployment to test workflow
+name: Deployment to test
 
 on:
   push:

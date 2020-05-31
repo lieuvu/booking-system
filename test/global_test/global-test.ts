@@ -4,23 +4,21 @@
  * - global objects that can be used in all test suits
  */
 
-
 // Library
 import { sql, createPool, DatabaseConnectionType } from 'slonik';
 import { raw } from 'slonik-sql-tag-raw';
 
 // Typescript
-import { config } from '../../src/config/system-config';
-import { createMigrator } from '../../src/db/migrator';
-import { log } from '../../src/util/logger';
-
+import { config } from '@src/config';
+import { createMigrator } from '@src/db/migrator';
+import { log } from '@util/logger';
 
 // Global variables
 const { PG_HOST, PG_USER, PG_PASS, PG_DB } = config.DATABASE;
 const slonik = createPool(`postgresql://${PG_USER}:${PG_PASS}@${PG_HOST}/${PG_DB}`);
 const migrator = createMigrator({
   migrationsPath: 'src/db/migrations',
-  log: () => { },
+  log: () => {},
   slonik: slonik,
 });
 

@@ -3,7 +3,7 @@ import { raw } from 'slonik-sql-tag-raw';
 
 // Typescript
 import { slonik, sql, DatabaseConnectionType } from './global_test/global-test';
-import { BuildingAddress } from '@src/model/building-address';
+import { BuildingAddress } from '@src/models/building-address';
 
 
 test('Should return data', async () => {

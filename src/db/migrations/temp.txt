@@ -1,0 +1,104 @@
+CREATE TABLE booking
+(
+  id serial NOT NULL,
+  user_id integer NOT NULL,
+  machine_id integer NOT NULL,
+  start_time timestamp DEFAULT NOW() NOT NULL,
+  end_time timestamp DEFAULT NOW() NOT NULL,
+  created_at timestamp DEFAULT NOW() NOT NULL,
+  updated_at timestamp DEFAULT NOW() NOT NULL
+);
+
+ALTER TABLE booking ADD CONSTRAINT booking_pkey
+  PRIMARY KEY (id);
+
+CREATE TABLE building_address
+(
+  id serial NOT NULL,
+  street text NOT NULL,
+  number text,
+  city text NOT NULL,
+  postal_code text NOT NULL,
+  created_at timestamp DEFAULT NOW() NOT NULL,
+  updated_at timestamp DEFAULT NOW() NOT NULL
+);
+
+ALTER TABLE building_address ADD CONSTRAINT building_address_pkey
+  PRIMARY KEY (id);
+
+CREATE TABLE machine
+(
+  id serial NOT NULL,
+  building_id integer,
+  brand text NOT NULL,
+  model text NOT NULL,
+  description text,
+  number smallint,
+  type text NOT NULL,
+  created_at timestamp DEFAULT NOW() NOT NULL,
+  updated_at timestamp DEFAULT NOW() NOT NULL
+);
+
+ALTER TABLE machine ADD CONSTRAINT machine_pkey
+  PRIMARY KEY (id);
+
+CREATE TABLE quota
+(
+  id serial NOT NULL,
+  user_id integer NOT NULL,
+  quota smallint NOT NULL,
+  valid_from timestamp DEFAULT NOW() NOT NULL,
+  valid_until timestamp DEFAULT NOW() NOT NULL,
+  created_at timestamp DEFAULT NOW() NOT NULL,
+  updated_at timestamp DEFAULT NOW() NOT NULL
+);
+
+ALTER TABLE quota ADD CONSTRAINT quota_pkey
+  PRIMARY KEY (id);
+
+CREATE TABLE user
+(
+  id serial NOT NULL,
+  username text NOT NULL,
+  hashed_password text NOT NULL,
+  salt text NOT NULL,
+  email text NOT NULL,
+  role text NOT NULL,
+  created_at timestamp DEFAULT NOW() NOT NULL,
+  updated_at timestamp DEFAULT NOW() NOT NULL
+);
+
+ALTER TABLE user ADD CONSTRAINT user_pkey
+  PRIMARY KEY (id);
+
+CREATE TABLE user_address
+(
+  id serial NOT NULL,
+  user_id integer NOT NULL,
+  building_id integer NOT NULL,
+  building_block_number text,
+  appartment_number text,
+  created_at timestamp NOT NULL,
+  updated_at timestamp NOT NULL
+);
+
+ALTER TABLE user_address ADD CONSTRAINT user_address_pkey
+  PRIMARY KEY (id);
+
+ALTER TABLE booking ADD CONSTRAINT booking_machine_id_fkey
+  FOREIGN KEY (machine_id) REFERENCES machine (id) ON UPDATE CASCADE;
+
+ALTER TABLE booking ADD CONSTRAINT booking_user_id_fkey
+  FOREIGN KEY (user_id) REFERENCES user (id) ON UPDATE CASCADE;
+
+ALTER TABLE machine ADD CONSTRAINT machine_building_id_fkey
+  FOREIGN KEY (building_id) REFERENCES building_address (id) ON UPDATE CASCADE;
+
+ALTER TABLE quota ADD CONSTRAINT quota_user_id_fkey
+  FOREIGN KEY (user_id) REFERENCES user (id) ON UPDATE CASCADE;
+
+ALTER TABLE user_address ADD CONSTRAINT user_address_building_id_fkey
+  FOREIGN KEY (building_id) REFERENCES building_address (id) ON UPDATE CASCADE;
+
+ALTER TABLE user_address ADD CONSTRAINT user_address_user_id_fkey
+  FOREIGN KEY (user_id) REFERENCES user (id) ON UPDATE CASCADE;

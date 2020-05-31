@@ -8,7 +8,10 @@ module.exports = {
     '\\.(ts)$': 'ts-jest'
   },
   moduleNameMapper: {
-    '^@src\/(.*)$': '<rootDir>/src/$1'
+    '^@src\/(.*)$': '<rootDir>/src/$1',
+    '^@models\/(.*)$': '<rootDir>/src/models/$1',
+    '^@util\/(.*)$': '<rootDir>/src/util/$1'
+
   },
   testEnvironment: 'node',
   globalSetup: '<rootDir>/test/global_test/global-setup.js',
