@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS user_address
     user_id                 integer NOT NULL,
     building_id             integer NOT NULL,
     building_block_number   text,
-    appartment_number       text,
+    apartment_number        text,
     created_at              timestamp NOT NULL DEFAULT NOW(),
     updated_at              timestamp NOT NULL DEFAULT NOW(),
 
