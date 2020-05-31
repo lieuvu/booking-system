@@ -10,9 +10,15 @@
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+    }
   },
   "include": [
-    "src/**/*.ts"
+    "test/**/*.ts",
+    "src/**/*.ts", "test/test_phases/db-setup.js"
   ]
 }

@@ -5,7 +5,12 @@ module.exports = {
     '**/test/**/*.test.ts'
   ],
   transform: {
-    "\\.(ts)$": "ts-jest"
+    '\\.(ts)$': 'ts-jest'
   },
-  testEnvironment: 'node'
+  moduleNameMapper: {
+    '^@src\/(.*)$': '<rootDir>/src/$1'
+  },
+  testEnvironment: 'node',
+  globalSetup: '<rootDir>/test/global_test/global-setup.js',
+  globalTeardown: '<rootDir>/test/global_test/global-teardown.js'
 }

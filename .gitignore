@@ -1,5 +1,6 @@
 # VSCode
 .history
+.vscode
 
 # Development
 node_modules
