@@ -1,4 +1,4 @@
-export interface User {
+export interface UserAddress {
     id: number;
     user_id: number;
     building_id: number;
