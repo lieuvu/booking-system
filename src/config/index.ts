@@ -1,6 +1,8 @@
+// Environment
 const env = process.env;
 
-const config = {
+// Export
+export const config = {
   NODE_PATH: env.NODE_PATH,
   PORT: env.PORT || 3000,
   DATABASE: {
@@ -14,6 +16,3 @@ const config = {
     COLOURIZED: env.LOG_COLORS ? env.LOG_COLORS : false
   }
 }
-
-// Export
-export { config }

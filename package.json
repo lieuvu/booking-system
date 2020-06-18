@@ -5,25 +5,50 @@
   "private": true,
   "repository": "github:lieuvu/booking-system",
   "dependencies": {
-    "slonik": "22.4.10",
+    "express": "4.17.1",
+    "body-parser": "1.19.0",
+    "slonik": "22.4.11",
     "slonik-sql-tag-raw": "1.0.2",
-    "winston": "3.2.1"
+    "winston": "3.2.1",
+    "morgan-body": "2.4.14"
   },
   "devDependencies": {
-    "typescript": "3.9.3",
+    "typescript": "3.9.5",
     "jest": "26.0.1",
-    "ts-jest": "26.0.0",
+    "ts-jest": "26.1.0",
     "ts-node": "8.10.2",
-    "@types/jest": "25.2.3",
+    "nodemon": "2.0.4",
+    "module-alias": "2.2.2",
+    "@types/jest": "26.0.0",
     "@types/slonik": "22.1.2",
-    "@slonik/migrator": "0.5.0"
+    "@slonik/migrator": "0.5.0",
+    "@types/express": "4.17.6"
+  },
+  "_moduleAliases": {
+    "@src": "src",
+    "@models": "src/models",
+    "@util": "src/util"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "test/*",
+      "**/*.map"
+    ],
+    "delay": "2500",
+    "watch": [
+      "src/"
+    ],
+    "ext": "ts,json"
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "compose:test": "docker-compose up --abort-on-container-exit",
     "compose:build": "docker-compose build --force-rm --no-cache --pull",
+    "compose:dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --abort-on-container-exit",
+    "compose:test": "docker-compose -f docker-compose.yml -f docker-compose.test.yml up --abort-on-container-exit",
+    "compose:dev-test": "docker-compose -f docker-compose.yml -f docker-compose.dev-test.yml up --abort-on-container-exit",
+    "dev": "nodemon",
     "start:build": "tsc",
-    "start": "node dist/test-slonik.js",
+    "start": "ts-node src/server.ts",
     "test": "jest --no-cache --runInBand --colors"
   }
 }
