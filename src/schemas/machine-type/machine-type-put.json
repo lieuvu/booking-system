@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Machine-Type-Put",
+  "description": "Machine type schema of a booking system when making a put request.",
+  "allOf": [
+    { "$ref": "machine-type-common.json#/definitions/machine-type" },
+    {
+      "type": "object",
+      "required": ["type"]
+    }
+  ]
+}

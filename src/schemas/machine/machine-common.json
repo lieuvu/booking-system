@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "machine-common.json",
+  "title": "Machine-Common",
+  "description": "Common machine schema of a booking system.",
+  "definitions": {
+    "machine": {
+      "type": "object",
+      "properties": {
+        "machine_type_id": {
+          "description": "Machine type id of the machine.",
+          "type": "integer"
+        },
+        "brand": {
+          "description": "Brand of the machine.",
+          "type": "string",
+          "minLength": 1
+        },
+        "model": {
+          "description": "Model of the machine.",
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "description": "Description of the machine.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

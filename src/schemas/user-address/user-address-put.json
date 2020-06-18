@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User-Address-Put",
+  "description": "User address schema of a booking system when making a put request.",
+  "allOf": [
+    { "$ref": "user-address-common.json#/definitions/user-address" },
+    {
+      "type": "object",
+      "minProperties": 1,
+      "anyOf": [
+        { "required": ["building_id"] },
+        { "required": ["apartment_number"] }
+      ]
+    }
+  ]
+}

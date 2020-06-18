@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User-Address-Post",
+  "description": "User address schema of a booking system when making a post request.",
+  "allOf": [
+    { "$ref": "user-address-common.json#/definitions/user-address" },
+    {
+      "type": "object",
+      "required": ["user_id", "building_id", "apartment_number"]
+    }
+  ]
+}

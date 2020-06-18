@@ -1,32 +1,24 @@
-version: "3.3"
+version: "3.8"
 
 services:
   booking-system:
+    stop_grace_period: 15s
     image: booking-system:local
     build:
       context: .
       dockerfile: Dockerfile
-    depends_on:
-      - booking-system.db
     volumes:
       - ./package.json:/app/package.json:rw
       - ./tsconfig.json:/app/tsconfig.json:rw
+      - ./.eslintrc.js:/app/.eslintrc.js:rw
+      - ./.eslintignore:/app/.eslintignore:rw
       - ./scripts:/app/scripts
       - ./src:/app/src:rw
+      - ./docs:/app/docs:rw
     environment:
-      - POSTGRES_HOST=booking-system.db
       - POSTGRES_USER=booking
       - POSTGRES_PASSWORD=booking
       - POSTGRES_DB=booking_system
       - LOG_LEVEL=info
       - LOG_COLORS=true
       - NODE_ENV=local
-
-  booking-system.db:
-    image: postgres:12-alpine
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_USER=booking
-      - POSTGRES_PASSWORD=booking
-      - POSTGRES_DB=booking_system

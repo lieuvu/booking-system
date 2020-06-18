@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "machine-location-common.json",
+  "title": "Machine-Location-Common",
+  "description": "Common machine location schema of a booking system.",
+  "definitions": {
+    "machine-location": {
+      "type": "object",
+      "properties": {
+        "machine_id": {
+          "description": "Machine id.",
+          "type": "integer",
+          "exclusiveMinimum": 0
+        },
+        "building_id": {
+          "description": "Building id where the machine locates.",
+          "type": "integer",
+          "exclusiveMinimum": 0
+        },
+        "number": {
+          "description": "Machine number in the building.",
+          "type": "integer",
+          "exclusiveMinimum": 0
+        },
+        "status": {
+          "description": "The status of the machine.",
+          "type": "string",
+          "enum": ["active", "broken", "storage"]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

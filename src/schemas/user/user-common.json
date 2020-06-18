@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "user-common.json",
+  "title": "User-Common",
+  "description": "Common user schema of a booking system",
+  "definitions": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "description": "First name of the user",
+          "type": "string",
+          "minLength": 2
+        },
+        "last_name": {
+          "description": "Last name of the user.",
+          "type": "string",
+          "minLength": 2
+        },
+        "email": {
+          "description": "Email of the user.",
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$"
+        },
+        "password": {
+          "description": "Password of the user.",
+          "type": "string",
+          "minLength": 7
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

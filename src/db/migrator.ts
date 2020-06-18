@@ -1,7 +1,7 @@
 // Library
-import { setupSlonikMigrator, SlonikMigratorOptions } from '@slonik/migrator';
+import { SlonikMigrator, SlonikMigratorOptions } from '@slonik/migrator';
 
 // Export
-export const createMigrator = (options: SlonikMigratorOptions) => {
-  return setupSlonikMigrator(options);
-};
+export function createMigrator(options: SlonikMigratorOptions): SlonikMigrator {
+  return new SlonikMigrator(options);
+}

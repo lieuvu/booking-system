@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Building-Address-Put",
+  "description": "Building address schema of a booking system when making a put request.",
+  "allOf": [
+    { "$ref": "building-address-common.json#/definitions/building-address" },
+    {
+      "type": "object",
+      "minProperties": 1,
+      "anyOf": [
+        { "required": ["street"] },
+        { "required": ["number"] },
+        { "required": ["block_number"] },
+        { "required": ["postal_code"] },
+        { "required": ["city"] }
+      ]
+    }
+  ]
+}

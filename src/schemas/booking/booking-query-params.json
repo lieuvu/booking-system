@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "booking-query-params.json",
+  "title": "Booking-Query-Params",
+  "description": "Booking query params schema of a booking system.",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "User id.",
+      "type": "integer",
+      "exclusiveMinimum": 0
+    },
+    "start_period": {
+      "description": "Starting period when the booking occurs.",
+      "type": "string",
+      "format": "date"
+    },
+    "end_period": {
+      "description": "Ending period when the booking occurs.",
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "additionalProperties": false,
+  "required": ["user_id", "start_period", "end_period"]
+}

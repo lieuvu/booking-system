@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "user-address-query-params.json",
+  "title": "User-Address-Query-Params",
+  "description": "User address query params schema of a booking system.",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "description": "User id.",
+      "type": "integer",
+      "exclusiveMinimum": 0
+    }
+  },
+  "additionalProperties": false,
+  "required": ["user_id"]
+}

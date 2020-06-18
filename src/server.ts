@@ -1,9 +1,9 @@
 // Library
-require('module-alias/register')
+import 'module-alias/register';
 
-// Typescript
+// App
 import { app } from '@src/app';
 import { config } from '@src/config';
-import { log } from '@util/logger';
+import { log } from '@src/utils';
 
 app.listen(config.PORT, () => log.info(`Zervant subscription API started on port: ${config.PORT}`));

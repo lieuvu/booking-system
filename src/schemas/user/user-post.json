@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User-Post",
+  "description": "User schema of a booking system when making a post request.",
+  "allOf": [
+    { "$ref": "user-common.json#/definitions/user" },
+    {
+      "type": "object",
+      "required": ["first_name", "last_name", "email", "password"]
+    }
+  ]
+}

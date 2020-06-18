@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "booking-common.json",
+  "title": "Booking-Common",
+  "description": "Common booking schema of a booking system.",
+  "definitions": {
+    "booking": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "description": "User id.",
+          "type": "integer",
+          "exclusiveMinimum": 0
+        },
+        "machine_id": {
+          "description": "Machine id.",
+          "type": "integer",
+          "exclusiveMinimum": 0
+        },
+        "start_time": {
+          "description": "The starting time of the booking.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "end_time": {
+          "description": "The end time of the booking.",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,11 +1,25 @@
-version: "3.3"
+version: "3.8"
 
 services:
   booking-system:
     image: booking-system:dev
-    command: ./scripts/wait-for-it.sh booking-system.db:5432 -- npm run dev
+    depends_on:
+      - booking-system.db.dev
+    command: ./scripts/wait-for-it.sh booking-system.db.dev:5432 -- sh -c 'npm run db:migrate && npm run dev'
     ports:
       - "3000:3000"
     environment:
+      - POSTGRES_HOST=booking-system.db.dev
+      - POSTGRES_DB=booking_system_dev
       - LOG_LEVEL=debug
       - NODE_ENV=development
+
+  booking-system.db.dev:
+    stop_grace_period: 30s
+    image: postgres:13-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=booking
+      - POSTGRES_PASSWORD=booking
+      - POSTGRES_DB=booking_system_dev

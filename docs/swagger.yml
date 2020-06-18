@@ -1,0 +1,1082 @@
+openapi: 3.0.0
+info:
+  title: Booking API
+  description: The API verson 1 for booking-system.
+  version: 1.0
+basePath: "/"
+servers:
+  - url: "/api/v1"
+schemes:
+  - "http"
+  - "https"
+tags:
+  - name: "Building Address"
+  - name: "User"
+  - name: "User Address"
+  - name: "Machine Type"
+  - name: "Machine"
+  - name: "Machine Location"
+  - name: "Booking"
+paths:
+  ### Building Address ###
+  /building-address:
+    post:
+      tags:
+        - "Building Address"
+      summary: Create A Building Address.
+      requestBody:
+        description: The request body to create a building address.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "{schemaHost}/api-docs/schemas/building-address/building-address-post.json"
+      responses:
+        '200':
+          description: A User JSON Object.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/EntityID"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+  /building-address/{id}:
+    get:
+      tags:
+        - "Building Address"
+      summary: Get A Building Address By ID.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the user to get.
+      responses:
+        '200':
+          description: A User JSON Object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/building-address/building-address-common.json#/definitions/building-address"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    put:
+      tags:
+        - "Building Address"
+      summary: Update A Building Address.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the building address to update.
+      requestBody:
+        description: The request body to update a building address.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "{schemaHost}/api-docs/schemas/building-address/building-address-put.json"
+      responses:
+        '200':
+          description: A User JSON Object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/building-address/building-address-common.json#/definitions/building-address"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    delete:
+      tags:
+        - "Building Address"
+      summary: Delete A Building Address.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the building address to delete.
+      responses:
+        '200':
+          description: A User JSON Object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    description: Numeric ID of the deleted building address.
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+
+ ### User ###
+  /user:
+    post:
+      tags:
+        - "User"
+      summary: Create A User.
+      requestBody:
+        description: The request body to create a user.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "{schemaHost}/api-docs/schemas/user/user-post.json"
+      responses:
+        '200':
+          description: A User JSON Object.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/EntityID"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+  /user/{id}:
+    get:
+      tags:
+        - "User"
+      summary: Get A User By ID.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the user to get.
+      responses:
+        '200':
+          description: A User JSON Object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/user/user-common.json#/definitions/user"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    put:
+      tags:
+        - "User"
+      summary: Update A User.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the user to update.
+      requestBody:
+        description: The request body to update a user.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "{schemaHost}/api-docs/schemas/user/user-put.json"
+      responses:
+        '200':
+          description: A User JSON Object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/user/user-common.json#/definitions/user"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    delete:
+      tags:
+        - "User"
+      summary: Delete A User.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the user to delete.
+      responses:
+        '200':
+          description: A User JSON Object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    description: Numeric ID of the deleted user.
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+
+ ### User Address ###
+  /user-address:
+    post:
+      tags:
+        - "User Address"
+      summary: Create A User Address.
+      requestBody:
+        description: The request body to create a user address.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "{schemaHost}/api-docs/schemas/user-address/user-address-post.json"
+      responses:
+        '200':
+          description: A User Address JSON Object.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/EntityID"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    get:
+      tags:
+        - "User Address"
+      summary: Get A User Address By Query Params.
+      parameters:
+        - in: query
+          name: user_id
+          schema:
+           type: integer
+      responses:
+        '200':
+          description: A User JSON Object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/user-address/user-address-common.json#/definitions/user-address"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+  /user-address/{id}:
+    get:
+      tags:
+        - "User Address"
+      summary: Get A User Address By ID.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the user address to get.
+      responses:
+        '200':
+          description: A User JSON Object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/user-address/user-address-common.json#/definitions/user-address"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    put:
+      tags:
+        - "User Address"
+      summary: Update A User Address.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the user address to update.
+      requestBody:
+        description: The request body to update a user address.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "{schemaHost}/api-docs/schemas/user-address/user-address-put.json"
+      responses:
+        '200':
+          description: A User Address JSON Object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/user-address/user-address-common.json#/definitions/user-address"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    delete:
+      tags:
+        - "User Address"
+      summary: Delete A User Address.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the user address to delete.
+      responses:
+        '200':
+          description: A User JSON Object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    description: Numeric ID of the deleted user address.
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+
+### Machine Type ###
+  /machine-type:
+    post:
+      tags:
+        - "Machine Type"
+      summary: Create A Machine Type.
+      requestBody:
+        description: The request body to create a machine type.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "{schemaHost}/api-docs/schemas/machine-type/machine-type-post.json"
+      responses:
+        '200':
+          description: A machine type JSON object.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/EntityID"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+  /machne-type/{id}:
+    get:
+      tags:
+        - "Machine Type"
+      summary: Get A Machine Type By ID.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the machine type to get.
+      responses:
+        '200':
+          description: A User JSON Object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/machine-type/machine-type-common.json#/definitions/machine-type"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    put:
+      tags:
+        - "Machine Type"
+      summary: Update A Machine Type.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the machine type to update.
+      requestBody:
+        description: The request body to update a machine type.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "{schemaHost}/api-docs/schemas/machine-type/machine-type-put.json"
+      responses:
+        '200':
+          description: A machine type JSON object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/machine-type/machine-type-common.json#/definitions/machine-type"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    delete:
+      tags:
+        - "Machine Type"
+      summary: Delete A Machine Type.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the machine type to delete.
+      responses:
+        '200':
+          description: An id of the deleted machine type.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    description: Numeric ID of the deleted machine type.
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+
+### Machine ###
+  /machine:
+    post:
+      tags:
+        - "Machine"
+      summary: Create A Machine.
+      requestBody:
+        description: The request body to create a machine.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "{schemaHost}/api-docs/schemas/machine/machine-post.json"
+      responses:
+        '200':
+          description: A machine JSON object.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/EntityID"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+  /machne/{id}:
+    get:
+      tags:
+        - "Machine"
+      summary: Get A Machine By ID.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the machine to get.
+      responses:
+        '200':
+          description: A machine JSON object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/machine/machine-common.json#/definitions/machine"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    put:
+      tags:
+        - "Machine"
+      summary: Update A Machine.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the machine to update.
+      requestBody:
+        description: The request body to update a machine.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "{schemaHost}/api-docs/schemas/machine/machine-put.json"
+      responses:
+        '200':
+          description: A machine JSON object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/machine/machine-common.json#/definitions/machine"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    delete:
+      tags:
+        - "Machine"
+      summary: Delete A Machine.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the machine to delete.
+      responses:
+        '200':
+          description: An id of deleted machine.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    description: Numeric ID of the deleted machine.
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+
+### Machine Location ###
+  /machine-location:
+    post:
+      tags:
+        - "Machine Location"
+      summary: Create A Machine Location.
+      requestBody:
+        description: The request body to create a machine location.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "{schemaHost}/api-docs/schemas/machine-location/machine-location-post.json"
+      responses:
+        '200':
+          description: A machine location JSON object.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/EntityID"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    get:
+      tags:
+        - "Machine Location"
+      summary: Get A Machine Location By Query Params.
+      parameters:
+        - in: query
+          name: machine_id
+          schema:
+           type: integer
+        - in: query
+          name: building_id
+          required: true
+          schema:
+           type: integer
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum:
+              - active
+              - broken
+              - storage
+      responses:
+        '200':
+          description: A machine location JSON object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/machine-location/machine-location-common.json#/definitions/machine-location"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+  /machne-location/{id}:
+    get:
+      tags:
+        - "Machine Location"
+      summary: Get A Machine Location By ID.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the machine to get.
+      responses:
+        '200':
+          description: A machine location JSON Object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/machine-location/machine-location-common.json#/definitions/machine-location"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    put:
+      tags:
+        - "Machine Location"
+      summary: Update A Machine Location.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the machine location to update.
+      requestBody:
+        description: The request body to update a machine.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "{schemaHost}/api-docs/schemas/machine-location/machine-location-put.json"
+      responses:
+        '200':
+          description: A machine location JSON object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/machine-location/machine-location-common.json#/definitions/machine-location"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    delete:
+      tags:
+        - "Machine Location"
+      summary: Delete A Machine Location.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the machine location to delete.
+      responses:
+        '200':
+          description: An id of machine location.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/EnityID"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+
+
+### Booking ###
+  /booking:
+    post:
+      tags:
+        - "Booking"
+      summary: Create A Booking.
+      requestBody:
+        description: The request body to create a booking.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "{schemaHost}/api-docs/schemas/booking/booking-post.json"
+      responses:
+        '200':
+          description: A booking JSON object.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/EntityID"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    get:
+      tags:
+        - "Booking"
+      summary: Get A Booking By Query Params.
+      parameters:
+        - in: query
+          name: user_id
+          required: true
+          schema:
+           type: integer
+        - in: query
+          name: start_period
+          required: true
+          schema:
+           type: string
+           format: date
+        - in: query
+          name: end_period
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: A booking JSON object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/booking/booking-common.json#/definitions/booking"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+  /booking/{id}:
+    get:
+      tags:
+        - "Booking"
+      summary: Get A Booking By ID.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the booking to get.
+      responses:
+        '200':
+          description: A booking JSON Object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/booking/booking-common.json#/definitions/booking"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    put:
+      tags:
+        - "Booking"
+      summary: Update A Booking.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the booking to update.
+      requestBody:
+        description: The request body to update a booking.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "{schemaHost}/api-docs/schemas/booking/booking-put.json"
+      responses:
+        '200':
+          description: A booking JSON object.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/booking/booking-common.json#/definitions/booking"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+    delete:
+      tags:
+        - "Booking"
+      summary: Delete A Booking.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the machine location to delete.
+      responses:
+        '200':
+          description: An id of machine location.
+          content:
+            application/json:
+              schema:
+                $ref: "{schemaHost}/api-docs/schemas/booking/booking-common.json#/definitions/booking"
+        '422':
+          description: Unprocessable Entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Error"
+
+
+# Reusable components
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    EntityID:
+      type: object
+      properties:
+        id:
+          type: integer

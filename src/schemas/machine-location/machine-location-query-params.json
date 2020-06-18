@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "machine-location-query-params.json",
+  "title": "Machine-Location-Query-Params",
+  "description": "Machine location query params schema of a booking system.",
+  "type": "object",
+  "properties": {
+    "machine_id": {
+      "description": "Machine id.",
+      "type": "integer",
+      "exclusiveMinimum": 0
+    },
+    "building_id": {
+      "description": "Building id where the machine locates.",
+      "type": "integer",
+      "exclusiveMinimum": 0
+    },
+    "status": {
+      "description": "The status of the machine.",
+      "type": "string",
+      "enum": ["active", "broken", "storage"]
+    }
+  },
+  "additionalProperties": false,
+  "anyOf": [
+    { "required": ["machine_id"] },
+    { "required": ["building_id"] }
+  ]
+}

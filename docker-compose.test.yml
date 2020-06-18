@@ -1,12 +1,29 @@
-version: "3.3"
+version: "3.8"
 
 services:
   booking-system:
     image: booking-system:test
-    command: ./scripts/wait-for-it.sh booking-system.db:5432 -- npm run test
+    depends_on:
+      - booking-system.db.test
+    command: ./scripts/wait-for-it.sh booking-system.db.test:5432 -- sh -c 'npm run db:migrate  && npm run lint && npm run test'
     volumes:
       - ./jest.config.js:/app/jest.config.js:rw
       - ./test:/app/test
     environment:
-      - LOG_LEVEL=error
+      - POSTGRES_HOST=booking-system.db.test
+      - POSTGRES_DB=booking_system_test
+      - LOG_ENABLED=false
       - NODE_ENV=test
+      - MORGAN_LOG_REQUEST_ENABLED=false
+
+  booking-system.db.test:
+    image: postgres:13-alpine
+    stop_grace_period: 30s
+    logging:
+      driver: none
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=booking
+      - POSTGRES_PASSWORD=booking
+      - POSTGRES_DB=booking_system_test

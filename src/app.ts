@@ -1,37 +1,54 @@
 // Library
-import * as express from 'express';
-import * as bodyParser from 'body-parser';
-import * as morganBody from 'morgan-body';
+import express from 'express';
+import morganBody from 'morgan-body';
+import queryString from 'query-string';
+import path from 'path';
 
-// Typescript
-import { BSRequest } from '@src/interfaces/BSRequest'
-import { services } from '@src/services';
-import { apiRoute } from '@src/routes/api'
-import { log } from '@util/logger';
-
-// Environment
-const env = process.env;
+// App
+import { config } from '@src/config';
+import { apiRoute } from '@routes/api';
+import { apiDocsRoute } from '@routes/api-docs';
+import { errorHandler } from '@src/middlewares/error-handler';
 
 // Setup app
 const app = express();
-app.use(bodyParser.json());
-morganBody(app, {
-  noColors: env.NODE_ENV !== 'development',
-  theme: 'lightened',
-  logResponseBody: false
+app.set('query parser', str => {
+  return queryString.parse(str, { parseNumbers: true, parseBooleans: true });
 });
+app.use(express.json());
+
+// Setup morgan body
+switch (config.NODE_ENV) {
+  case 'development':
+    morganBody(app, {
+      theme: 'lightened',
+      logResponseBody: true,
+    });
+    break;
+  case 'test':
+    if (config.MORGAN_LOG_REQUEST_ENABLED === 'true' || config.MORGAN_LOG_REQUEST_ENABLED === true) {
+      morganBody(app, {
+        theme: 'lightened',
+        logResponseBody: true,
+      });
+    }
+    break;
+  default:
+    morganBody(app, {
+      noColors: true,
+      logResponseBody: false
+    });
+}
 
 // Setup router
 const rootRouter = express.Router();
 
-// Route
-app.use('/', rootRouter)
-app.use((req: BSRequest, res: express.Response, next: express.NextFunction) => {
-  log.info('Setup servivces');
-  req.services = services;
-  next();
-})
+// Routes
+app.use('/', rootRouter);
 app.use('/api', apiRoute);
+app.use('/api-docs/schemas', express.static(path.resolve('src/schemas')));
+app.use('/api-docs', apiDocsRoute);
+app.use(errorHandler);
 
 // Export
 export { app };

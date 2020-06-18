@@ -1,10 +1,10 @@
 // Library
-import * as express from 'express';
+import express from 'express';
 const router: express.Router = express.Router();
 
-// Typescript
-import { healthRoute } from '@src/routes/api/health';
-import { v1Route } from '@src/routes/api/v1';
+// App
+import { healthRoute } from '@routes/api/health';
+import { v1Route } from '@routes/api/v1';
 
 // Routes
 router.use('/health', healthRoute);
